@@ -16,7 +16,8 @@ import { CreateEmpleadosComponent } from './pages/create-empleados/create-emplea
     MaterialModule
   ],
   exports:[
-    
+    ListEmpleadosComponent,
+    CreateEmpleadosComponent
   ]
 })
 export class EmpleadosModule { }
