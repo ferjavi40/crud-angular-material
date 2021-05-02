@@ -4,6 +4,8 @@ import { MaterialModule } from '../material/material.module';
 import { ListEmpleadosComponent } from './pages/list-empleados/list-empleados.component';
 import { CreateEmpleadosComponent } from './pages/create-empleados/create-empleados.component';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 
 @NgModule({
@@ -13,7 +15,8 @@ import { CreateEmpleadosComponent } from './pages/create-empleados/create-emplea
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    FlexLayoutModule
   ],
   exports:[
     ListEmpleadosComponent,
