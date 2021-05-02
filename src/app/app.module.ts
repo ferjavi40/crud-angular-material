@@ -6,6 +6,7 @@ import { EmpleadosModule } from './empleados/empleados.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 
@@ -18,7 +19,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     BrowserModule,
     MaterialModule,
     EmpleadosModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

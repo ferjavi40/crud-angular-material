@@ -1,48 +1,24 @@
-<div fxLayout="row" class="columna">
-    <div fxFlex="20">
+<div class="container mt-3">
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Documento</th>
+                <th scope="col">Salario</th>
+                <th><span class="material-icons">person_add</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Fernando</th>
+                <td>Ramirez</td>
+                <td>475SD452</td>
+                <td>9554123547</td>
+                <td class="float-right"><span class="material-icons text-info">edit</span><span class="material-icons ml-5 text-danger">person_remove</span></td>
+            </tr>
 
-    </div>
-    <div fxFlex="60">
-        <mat-card>
-            <h3>Listado de empleados.</h3>
-        </mat-card>
-        <div div fxLayout="row" fxLayoutAlign="end center">
-            <button mat-raised-button color="primary" class="boton-margen"> Agregar </button>
-        </div>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-            <!-- Position Column -->
-            <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-            </ng-container>
-
-            <!-- Name Column -->
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-            </ng-container>
-
-            <!-- Weight Column -->
-            <ng-container matColumnDef="weight">
-                <th mat-header-cell *matHeaderCellDef> Weight </th>
-                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-            </ng-container>
-
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="symbol">
-                <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                <td mat-cell *matCellDef="let element"> {{element.symbol}}- <span class="material-icons">mode_edit</span></td>
-            </ng-container>
-
-            
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-
-
-    </div>
-    <div fxFlex="20">
-
-    </div>
+        </tbody>
+    </table>
 </div>
