@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +22,7 @@ import { AppRoutingModule } from './app-routing.module';
     EmpleadosModule,
     BrowserAnimationsModule,
     AppRoutingModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

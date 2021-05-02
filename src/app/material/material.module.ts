@@ -5,6 +5,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 
@@ -17,7 +18,8 @@ exports:[
   MatIconModule,
   MatMenuModule,
   MatCardModule,
-  MatTableModule
+  MatTableModule,
+  MatFormFieldModule
   
 ]
 })
