@@ -2,18 +2,31 @@
     <div class="row">
         <div class="col-lg-6 offset-lg-3">
             <div class="card text-center">
-                <div class="card-body">
-                    <h3>Agregar empleado</h3>
-                    <form class="mt-3">
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" class="form-control form-control-lg" placeholder="Nombre">
-                            </div>
-                            <div class="col">
-                                <input type="text" class="form-control form-control-lg" placeholder="Apellido">
-                            </div>
-                        </div>
+                <div class="card-body card-fondo">
+                    <h3 class="text-light">Agregar empleado</h3>
+                    <form [formGroup]="clientesForm" (ngSubmit)="onSubmit()">
+
+                        <mat-form-field class="example-full-width">
+                            <input type="text" matInput placeholder="Introduce un nombre" formControlName="nombre"class="text-white">
+                            <mat-error *ngIf="nombre.invalid && nombre.touched">Nombre es requerido</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input type="text" matInput placeholder="Introduce un apellido" formControlName="apellido"class="text-white">
+                            <mat-error *ngIf="apellido.invalid && apellido.touched">Apellido es requerido</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input type="number" matInput placeholder="Introduce un numero de documento"formControlName="documento" class="text-white">
+                            <mat-error *ngIf="documento.invalid && documento.touched">Documento es requerido</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input type="number" matInput placeholder="Introduce un salario" formControlName="salario"class="text-white">
+                            <mat-error *ngIf="salario.invalid && salario.touched">Salario es requerido</mat-error>
+                        </mat-form-field>
+                        <button type="submit" mat-button color="warn">Enviar</button>
+
                     </form>
+
+
                 </div>
             </div>
         </div>
