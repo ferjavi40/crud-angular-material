@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class CreateEmpleadosComponent implements OnInit {
   })
 
 
-  constructor() { }
+  constructor( private router: Router) { }
 
   ngOnInit() {
 
@@ -49,6 +50,10 @@ export class CreateEmpleadosComponent implements OnInit {
     } else {
       console.log('Form not valid');
     }
+  }
+
+  goToHome(){
+    this.router.navigate(['/list-empleados']);
   }
 
 }
