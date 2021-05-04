@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
@@ -9,46 +9,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-empleados.component.css']
 })
 export class CreateEmpleadosComponent implements OnInit {
-  // clientesForm: FormGroup;
-
-  clientesForm = new FormGroup({
-    nombre: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    apellido: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    documento: new FormControl('', [Validators.required]),
-    salario: new FormControl('', Validators.required),
-  })
+  clientesForm: FormGroup;
+  submitted: boolean = false;
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private fb: FormBuilder) {
+    this.clientesForm = this.fb.group({
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      documento: ['', Validators.required],
+      salario: ['', Validators.required],
+    })
+  }
 
   ngOnInit() {
 
   }
 
-  get nombre() {
-    return this.clientesForm.get('nombre');
-  }
-
-  get apellido() {
-    return this.clientesForm.get('apellido');
-  }
-
-  get documento() {
-    return this.clientesForm.get('documento');
-  }
-
-  get salario() {
-    return this.clientesForm.get('salario');
-  }
-
-
   onSubmit(): void {
-    if (this.clientesForm.valid) {
-      console.log(this.clientesForm.value);
-      this.clientesForm.reset();
-    } else {
-      console.log('Form not valid');
-    }
+    console.log(this.clientesForm);
   }
 
   goToHome() {
