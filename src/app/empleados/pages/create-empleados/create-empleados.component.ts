@@ -20,14 +20,26 @@ export class CreateEmpleadosComponent implements OnInit {
 
 
   constructor(private router: Router,
-    private fb: FormBuilder) {}
+    private fb: FormBuilder) { }
 
   ngOnInit() {
 
   }
 
   onSubmit(): void {
-    console.log(this.clientesForm.value);
+
+    if (this.clientesForm.invalid) {
+      return
+    }
+    const empleado: any = {
+      nombre: this.clientesForm.value.nombre,
+      apellido: this.clientesForm.value.apellido,
+      documento: this.clientesForm.value.documento,
+      salario: this.clientesForm.value.salario,
+      fechaCreacion: new Date(),
+      fechaActualizacion: new Date()
+    }
+    console.log(empleado);
   }
 
   goToHome() {
