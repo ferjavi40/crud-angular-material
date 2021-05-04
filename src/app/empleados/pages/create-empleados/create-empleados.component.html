@@ -23,7 +23,8 @@
                             <mat-error *ngIf="salario.invalid && salario.touched">Salario es requerido</mat-error>
                         </mat-form-field>
                         <button type="submit"  mat-raised-button color="warn" [disabled]="!clientesForm.valid" class="mr-3">Enviar</button>
-                        <button (click)="goToHome()" mat-raised-button color="primary">Volver</button>
+                        <button type="button" (click)="goToHome()" mat-raised-button color="primary">Volver</button>
+                        
 
                     </form>
 
