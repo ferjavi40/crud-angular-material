@@ -12,19 +12,18 @@ export class CreateEmpleadosComponent implements OnInit {
   // clientesForm: FormGroup;
 
   clientesForm = new FormGroup({
-    nombre: new FormControl('', [Validators.required,Validators.minLength(3)]),
-    apellido: new FormControl('', [Validators.required,Validators.minLength(3)]),
+    nombre: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    apellido: new FormControl('', [Validators.required, Validators.minLength(3)]),
     documento: new FormControl('', [Validators.required]),
     salario: new FormControl('', Validators.required),
   })
 
 
-  constructor( private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
 
   }
-
 
   get nombre() {
     return this.clientesForm.get('nombre');
@@ -52,7 +51,7 @@ export class CreateEmpleadosComponent implements OnInit {
     }
   }
 
-  goToHome(){
+  goToHome() {
     this.router.navigate(['/list-empleados']);
   }
 
