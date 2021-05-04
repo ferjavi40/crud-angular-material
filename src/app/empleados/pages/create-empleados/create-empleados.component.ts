@@ -9,26 +9,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-empleados.component.css']
 })
 export class CreateEmpleadosComponent implements OnInit {
-  clientesForm: FormGroup;
   submitted: boolean = false;
+
+  clientesForm = this.fb.group({
+    nombre: ['', Validators.required],
+    apellido: ['', Validators.required],
+    documento: ['', Validators.required],
+    salario: ['', Validators.required],
+  });
 
 
   constructor(private router: Router,
-    private fb: FormBuilder) {
-    this.clientesForm = this.fb.group({
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      documento: ['', Validators.required],
-      salario: ['', Validators.required],
-    })
-  }
+    private fb: FormBuilder) {}
 
   ngOnInit() {
 
   }
 
   onSubmit(): void {
-    console.log(this.clientesForm);
+    console.log(this.clientesForm.value);
   }
 
   goToHome() {
