@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "empleados-crud-93672": {
+      "hosting": {
+        "material": [
+          "empleados-crud-93672"
+        ]
+      }
+    }
+  }
+}
