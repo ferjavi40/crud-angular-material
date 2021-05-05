@@ -47,7 +47,10 @@ export class CreateEmpleadosComponent implements OnInit {
 
     this._empleadoService.agregarEmpleado(empleado)
       .then(() => {
-        this.toastr.success(`Empleado ${empleado.nombre} ha sido registrado`,'Registro exitoso');
+        this.toastr.success(`Empleado ${empleado.nombre} ha sido registrado`,'Registro exitoso',{
+          timeOut: 3000,
+          tapToDismiss: true
+        });
         this.goToHome()
       }).catch(error => {
         console.log(error);
