@@ -10,6 +10,7 @@ import {MatInputModule} from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -27,7 +28,8 @@ exports:[
   MatInputModule,
   MatSelectModule,
   MatCheckboxModule,
-  MatChipsModule
+  MatChipsModule,
+  MatProgressSpinnerModule
   
 ]
 })

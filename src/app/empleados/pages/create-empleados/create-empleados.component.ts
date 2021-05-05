@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { empleadoInterface } from '../../interfaces/empleado-interface';
 
 
+
 @Component({
   selector: 'app-create-empleados',
   templateUrl: './create-empleados.component.html',
@@ -13,6 +14,9 @@ import { empleadoInterface } from '../../interfaces/empleado-interface';
 })
 export class CreateEmpleadosComponent implements OnInit {
   submitted: boolean = false;
+  loading: boolean = false;
+
+
 
   clientesForm = this.fb.group({
     nombre: ['', Validators.required],
@@ -44,19 +48,21 @@ export class CreateEmpleadosComponent implements OnInit {
       fechaCreacion: new Date(),
       fechaActualizacion: new Date()
     }
-
+    this.loading = true;
     this._empleadoService.agregarEmpleado(empleado)
       .then(() => {
-        this.toastr.success(`Empleado ${empleado.nombre} ha sido registrado`,'Registro exitoso',{
+        this.toastr.success(`Empleado ${empleado.nombre} ha sido registrado`, 'Registro exitoso', {
           timeOut: 3000,
           tapToDismiss: true
         });
+        this.loading = false;
         this.goToHome()
       }).catch(error => {
         console.log(error);
         this.toastr.error('No ha podido agregarse usuario');
+        this.loading = true;
       });
-    
+
   }
 
   goToHome() {
