@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import {  Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { EmpleadosService } from '../../services/empleados.service';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class CreateEmpleadosComponent implements OnInit {
 
 
   constructor(private router: Router,
-    private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private _empleadoService:EmpleadosService) { }
 
   ngOnInit() {
 
@@ -39,7 +41,13 @@ export class CreateEmpleadosComponent implements OnInit {
       fechaCreacion: new Date(),
       fechaActualizacion: new Date()
     }
-    console.log(empleado);
+
+    this._empleadoService.agregarEmpleado(empleado)
+          .then(()=>{
+            console.log('Empleado registrado con exito');
+          }).catch(error =>{
+            console.log(error);
+          });
   }
 
   goToHome() {
