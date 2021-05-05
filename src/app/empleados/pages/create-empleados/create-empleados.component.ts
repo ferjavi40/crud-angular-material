@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmpleadosService } from '../../services/empleados.service';
+import { ToastrService } from 'ngx-toastr';
+import { empleadoInterface } from '../../interfaces/empleado-interface';
 
 
 @Component({
@@ -22,7 +24,8 @@ export class CreateEmpleadosComponent implements OnInit {
 
   constructor(private router: Router,
     private fb: FormBuilder,
-    private _empleadoService: EmpleadosService) { }
+    private _empleadoService: EmpleadosService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
 
@@ -33,7 +36,7 @@ export class CreateEmpleadosComponent implements OnInit {
     if (this.clientesForm.invalid) {
       return
     }
-    const empleado: any = {
+    const empleado: empleadoInterface = {
       nombre: this.clientesForm.value.nombre,
       apellido: this.clientesForm.value.apellido,
       documento: this.clientesForm.value.documento,
@@ -44,10 +47,11 @@ export class CreateEmpleadosComponent implements OnInit {
 
     this._empleadoService.agregarEmpleado(empleado)
       .then(() => {
-        console.log('Empleado registrado con exito');
+        this.toastr.success(`Empleado ${empleado.nombre} ha sido registrado`,'Registro exitoso');
         this.goToHome()
       }).catch(error => {
         console.log(error);
+        this.toastr.error('No ha podido agregarse usuario');
       });
     
   }
