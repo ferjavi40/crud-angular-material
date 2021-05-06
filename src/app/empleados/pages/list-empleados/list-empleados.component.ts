@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { empleadoInterface } from '../../interfaces/empleado-interface';
+import { EmpleadosService } from '../../services/empleados.service';
+
 
 
 @Component({
@@ -10,13 +11,37 @@ import { Observable } from 'rxjs';
 })
 export class ListEmpleadosComponent implements OnInit {
 
+  public empleados: any[] = [];
 
-  constructor() {
 
-  }
+  constructor(private _empleadoService: EmpleadosService) { }
 
   ngOnInit(): void {
+    this.getEmpleados()
+  }
 
+
+  getEmpleados() {
+    this._empleadoService.getEmpleados()
+      .subscribe((data: empleadoInterface[]) => {
+        this.empleados = [];
+        data.forEach((element: any) => {
+          this.empleados.push({
+            id: element.payload.doc.id,
+            ...element.payload.doc.data()
+          })
+        });
+        console.log(this.empleados.sort());
+      });
+  }
+
+
+  eliminarEmpleado(id:string) {
+    this._empleadoService.eliminarEmpleado(id).then(()=>{
+      console.log('Empleado eliminado con exito');
+    }).catch(error =>{
+      console.log(error);
+    });
   }
 
 }

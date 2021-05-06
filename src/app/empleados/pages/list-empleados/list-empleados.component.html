@@ -10,14 +10,16 @@
                 <th routerLink="/create-empleado"><span class="material-icons">person_add</span></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody *ngFor="let empleado of empleados">
             <tr>
-                <th scope="row">Fernando</th>
-                <td>Ramirez</td>
-                <td>475SD452</td>
-                <td>9554123547</td>
-                <td class="float-right"><span class="material-icons text-info">edit</span><span
-                        class="material-icons ml-5 text-danger">person_remove</span></td>
+                <td>{{empleado.nombre | titlecase}}</td>
+                <td>{{empleado.apellido | titlecase}}</td>
+                <td>{{empleado.documento}}</td>
+                <td>{{empleado.salario | currency}}</td>
+                <td class="float-right">
+                    <span class="material-icons text-info">edit</span>
+                    <span (click)="eliminarEmpleado(empleado.id)" class="material-icons ml-5 text-danger">person_remove</span>
+                </td>
             </tr>
 
         </tbody>
