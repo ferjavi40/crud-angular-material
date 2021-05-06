@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./list-empleados.component.css']
 })
 export class ListEmpleadosComponent implements OnInit {
+ 
 
   public empleados: any[] = [];
 
@@ -53,7 +54,7 @@ export class ListEmpleadosComponent implements OnInit {
       if(result.value){
         this._empleadoService.eliminarEmpleado(id).then(()=>{
           Swal.fire('Eliminado','Empleado ha sido eliminado');
-          this.toastr.success(`Empleado eliminado`,`eliminado exitosamente`,{
+          this.toastr.error(`Empleado eliminado`,`eliminado exitosamente`,{
             timeOut: 3000,
             tapToDismiss: true
           })
@@ -64,5 +65,7 @@ export class ListEmpleadosComponent implements OnInit {
     })
     
   }
+
+
 
 }
