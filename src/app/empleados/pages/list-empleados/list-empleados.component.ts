@@ -3,6 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { empleadoInterface } from '../../interfaces/empleado-interface';
 import { EmpleadosService } from '../../services/empleados.service';
 
+import Swal from 'sweetalert2';
+
 
 
 @Component({
@@ -39,14 +41,28 @@ export class ListEmpleadosComponent implements OnInit {
 
 
   eliminarEmpleado(id:string) {
-    this._empleadoService.eliminarEmpleado(id).then(()=>{
-      this.toastr.success(`Empleado eliminado`,`eliminado exitosamente`,{
-        timeOut: 3000,
-        tapToDismiss: true
-      })
-    }).catch(error =>{
-      console.log(error);
-    });
+    Swal.fire({
+      title:'Estas seguro?',
+      text:'Este paso es irreversible',
+      icon:'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor:'#d33',
+      confirmButtonText: 'Si, borrar!'
+    }).then(result=>{
+      if(result.value){
+        this._empleadoService.eliminarEmpleado(id).then(()=>{
+          Swal.fire('Eliminado','Empleado ha sido eliminado');
+          this.toastr.success(`Empleado eliminado`,`eliminado exitosamente`,{
+            timeOut: 3000,
+            tapToDismiss: true
+          })
+        }).catch(error =>{
+          console.log(error);
+        });
+      }
+    })
+    
   }
 
 }
