@@ -3,7 +3,7 @@
         <div class="col-lg-6 offset-lg-3">
             <div class="card text-center">
                 <div class="card-body card-fondo">
-                    <h3 class="text-light">Agregar empleado</h3>
+                    <h3 class="text-light">{{titulo}}</h3>
                     <mat-spinner *ngIf="loading" class="float-right" color="warn" [diameter]="30"></mat-spinner>
                     <form [formGroup]="clientesForm" (ngSubmit)="onSubmit()">
                         

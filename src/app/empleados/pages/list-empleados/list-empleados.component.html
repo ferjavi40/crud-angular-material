@@ -1,7 +1,8 @@
 <div class="container mt-3 text-center">
     <h1 class="mb-4">Aplicacion para el control de trabajadores</h1>
     <p *ngIf="empleados.length<=0">No hay datos para mostrar, por favor agregue usuarios.</p>
-    <button routerLink="/create-empleado" *ngIf="empleados.length<=0" mat-raised-button color="primary">Agregar empleado</button>
+    <button routerLink="/create-empleado" *ngIf="empleados.length<=0" mat-raised-button color="primary">Agregar
+        empleado</button>
     <table *ngIf="empleados.length>0" class="table table-striped table-dark">
         <thead>
             <tr>
@@ -20,8 +21,9 @@
                 <td>{{empleado.documento}}</td>
                 <td>{{empleado.salario | currency}}</td>
                 <td class="float-right">
-                    <span class="material-icons text-info">edit</span>
-                    <span (click)="eliminarEmpleado(empleado.id)" class="material-icons ml-5 text-danger">person_remove</span>
+                    <span class="material-icons text-info" [routerLink]="['/edit-empleado/',empleado.id]">edit</span>
+                    <span (click)="eliminarEmpleado(empleado.id)"
+                        class="material-icons ml-5 text-danger">person_remove</span>
                 </td>
             </tr>
 

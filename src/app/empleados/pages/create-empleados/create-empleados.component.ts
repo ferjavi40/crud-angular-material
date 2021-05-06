@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmpleadosService } from '../../services/empleados.service';
 import { ToastrService } from 'ngx-toastr';
 import { empleadoInterface } from '../../interfaces/empleado-interface';
@@ -15,6 +15,8 @@ import { empleadoInterface } from '../../interfaces/empleado-interface';
 export class CreateEmpleadosComponent implements OnInit {
   submitted: boolean = false;
   loading: boolean = false;
+  id: string | null;
+  titulo: string = 'Agregar empleado';
 
 
 
@@ -29,10 +31,13 @@ export class CreateEmpleadosComponent implements OnInit {
   constructor(private router: Router,
     private fb: FormBuilder,
     private _empleadoService: EmpleadosService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private aRoute: ActivatedRoute) {
+    this.id = this.aRoute.snapshot.paramMap.get('id');
+  }
 
   ngOnInit() {
-
+    this.onEditar();
   }
 
   onSubmit(): void {
@@ -63,6 +68,29 @@ export class CreateEmpleadosComponent implements OnInit {
         this.loading = true;
       });
 
+  }
+
+  agregar() {
+
+  }
+
+
+  onEditar() {
+    this.titulo = 'Editar empleado';
+    if (this.id !== null) {
+      this.loading = true;
+      this._empleadoService.getEmpleado(this.id)
+        .subscribe((data) => {
+          this.loading = false;
+          console.log(data.payload.data()['nombre']);
+          this.clientesForm.setValue({
+            nombre: data.payload.data()['nombre'],
+            apellido: data.payload.data()['apellido'],
+            documento: data.payload.data()['documento'],
+            salario: data.payload.data()['salario']
+          })
+        });
+    }
   }
 
   goToHome() {
