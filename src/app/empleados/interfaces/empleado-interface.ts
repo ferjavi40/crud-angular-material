@@ -2,7 +2,7 @@ export interface empleadoInterface{
     apellido: string;
     documento: number;
     fechaActualizacion: Date;
-    fechaCreacion: Date;
+    fechaCreacion?: Date;
     nombre: string;
     salario: number;
 

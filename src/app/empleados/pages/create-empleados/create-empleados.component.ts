@@ -40,11 +40,20 @@ export class CreateEmpleadosComponent implements OnInit {
     this.onEditar();
   }
 
-  onSubmit(): void {
+  agregarEditarEmpleado(): void {
 
     if (this.clientesForm.invalid) {
       return
     }
+    if (this.id === null) {
+      this.agregarEmpleado();
+    } else {
+      this.editarEmpleado(this.id);
+    }
+
+  }
+
+  agregarEmpleado() {
     const empleado: empleadoInterface = {
       nombre: this.clientesForm.value.nombre,
       apellido: this.clientesForm.value.apellido,
@@ -67,13 +76,28 @@ export class CreateEmpleadosComponent implements OnInit {
         this.toastr.error('No ha podido agregarse usuario');
         this.loading = true;
       });
-
   }
 
-  agregar() {
 
+  editarEmpleado(id:string) {
+
+    const empleado: empleadoInterface = {
+      nombre: this.clientesForm.value.nombre,
+      apellido: this.clientesForm.value.apellido,
+      documento: this.clientesForm.value.documento,
+      salario: this.clientesForm.value.salario,
+      fechaActualizacion: new Date()
+    }
+    this.loading = true;
+    this._empleadoService.actualizarEmpleado(id,empleado).then(()=>{
+      this.loading = false;
+      this.toastr.info(`Empleado ${empleado.nombre} ha sido actualizado`, 'Actualizacion exitosa', {
+        timeOut: 3000,
+        tapToDismiss: true
+      });
+      this.router.navigate(['/list-empleados']);
+    })
   }
-
 
   onEditar() {
     this.titulo = 'Editar empleado';
