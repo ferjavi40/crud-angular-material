@@ -5,6 +5,8 @@ import { EmpleadosService } from '../../services/empleados.service';
 import { ToastrService } from 'ngx-toastr';
 import { empleadoInterface } from '../../interfaces/empleado-interface';
 
+import Swal from 'sweetalert2';
+
 
 
 @Component({
@@ -89,14 +91,29 @@ export class CreateEmpleadosComponent implements OnInit {
       fechaActualizacion: new Date()
     }
     this.loading = true;
-    this._empleadoService.actualizarEmpleado(id,empleado).then(()=>{
-      this.loading = false;
-      this.toastr.info(`Empleado ${empleado.nombre} ha sido actualizado`, 'Actualizacion exitosa', {
-        timeOut: 3000,
-        tapToDismiss: true
-      });
-      this.router.navigate(['/list-empleados']);
+
+    Swal.fire({
+      title:'Estas seguro de actualizar empleado?',
+      text:'Este paso es reversible, puede cambiarlo luego',
+      icon:'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor:'#d33',
+      confirmButtonText: 'Si, actualizar!'
+    }).then(result =>{
+      if(result.value){
+        this._empleadoService.actualizarEmpleado(id,empleado).then(()=>{
+          Swal.fire('Actualizado','Empleado ha sido actualizado');
+          this.loading = false;
+          this.toastr.info(`Empleado ${empleado.nombre} ha sido actualizado`, 'Actualizacion exitosa', {
+            timeOut: 3000,
+            tapToDismiss: true
+          });
+          this.router.navigate(['/list-empleados']);
+        })
+      }
     })
+
   }
 
   onEditar() {
